@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static li.quwat.optin.R.id.tvArtist;
+import static li.quwat.optin.R.id.tvName;
+
 /**
  * Created by a. z. quwatli on 8/12/2017.
  */
@@ -39,17 +42,36 @@ public class FeedAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = layoutInflater.inflate(layoutResource, parent, false);
-        TextView tvname = (TextView)view.findViewById(R.id.tvName);
-        TextView tvartist = (TextView)view.findViewById(R.id.tvArtist);
-        TextView tvsummary = (TextView)view.findViewById(R.id.tvSummary);
+
+        ViewHolder vh;
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(layoutResource, parent, false);
+
+            vh = new ViewHolder(convertView);
+            convertView.setTag(vh);
+        } else {
+            vh = (ViewHolder)convertView.getTag();
+        }
+       
 
         feedEntry currentApp = applications.get(position);
 
-        tvname.setText(currentApp.getName());
-        tvartist.setText(currentApp.getArtist());
-        tvsummary.setText(currentApp.getSummary());
+        vh.tvName.setText(currentApp.getName());
+        vh.tvArtist.setText(currentApp.getArtist());
+        vh.tvSummary.setText(currentApp.getSummary());
 
-        return view;
+        return convertView;
+    }
+
+    private class ViewHolder {
+        final TextView tvName;
+        final TextView tvArtist;
+        final TextView tvSummary;
+
+        public ViewHolder(View v) {
+            this.tvName = (TextView)v.findViewById(tvName);
+            this.tvArtist = (TextView)v.findViewById(R.id.tvSummary);
+            this.tvSummary = (TextView)v.findViewById(R.id.tvSummary);
+        }
     }
 }
