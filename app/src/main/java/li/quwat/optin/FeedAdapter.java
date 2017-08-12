@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import static li.quwat.optin.R.id.tvArtist;
-import static li.quwat.optin.R.id.tvName;
-
 /**
  * Created by a. z. quwatli on 8/12/2017.
  */
@@ -52,7 +49,7 @@ public class FeedAdapter extends ArrayAdapter {
         } else {
             vh = (ViewHolder)convertView.getTag();
         }
-       
+
 
         feedEntry currentApp = applications.get(position);
 
@@ -69,8 +66,8 @@ public class FeedAdapter extends ArrayAdapter {
         final TextView tvSummary;
 
         public ViewHolder(View v) {
-            this.tvName = (TextView)v.findViewById(tvName);
-            this.tvArtist = (TextView)v.findViewById(R.id.tvSummary);
+            this.tvName = (TextView)v.findViewById(R.id.tvName);
+            this.tvArtist = (TextView)v.findViewById(R.id.tvArtist);
             this.tvSummary = (TextView)v.findViewById(R.id.tvSummary);
         }
     }
